@@ -1,0 +1,49 @@
+server:
+  compression:
+    enabled: true
+    mime-types: text/plain,application/javascript,application/x-javascript,text/css,application/xml,application/json
+    min-response-size: 1024
+spring:
+  aop:
+    auto: true
+    proxy-target-class: true
+  profiles:
+    active: product
+  datasource:
+    filters: stat
+    maxActive: 1000
+    initialSize: 5
+    minIdle: 5
+    maxWait: 5000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 1 from dual
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 200
+  resources:
+    static-locations: file:./pineapple-ui/,file:./static/,/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/, classpath:/public/
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 120MB
+  application:
+    name: alpha-pineapple-admin
+
+hsweb:
+    app:
+      name: Pineapple Admin
+      version: 3.0.0
+    cors:
+      allowed-headers: "*"
+      allowed-methods: "*"
+      allowed-origins: "*"
+      enable: true
+mybatis:
+  mapper-locations: classpath*:mybatis/*Mapper.xml
+  dynamic-datasource: true #开启mybatis动态数据源支持
+fastjson:
+  features: WriteDateUseDateFormat

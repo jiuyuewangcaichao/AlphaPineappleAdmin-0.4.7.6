@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="us.circle.pineapple.admin.dao.PineappleDao">
+    <resultMap id="PineappleResultMap" type="us.circle.pineapple.admin.api.Pineapple">
+
+        <result property="id" column="id" javaType="Long" jdbcType="BIGINT"/>
+        <result property="gameId" column="game_id" javaType="Long" jdbcType="BIGINT"/>
+        <result property="gameName" column="game_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="gameScore" column="game_score" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="playerCount" column="player_count" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="gameDuration" column="game_duration" javaType="Double" jdbcType="FLOAT"/>
+        <result property="handCount" column="hand_count" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="playerId" column="player_id" javaType="Long" jdbcType="BIGINT"/>
+        <result property="playerName" column="player_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="clubId" column="club_id" javaType="Long" jdbcType="BIGINT"/>
+        <result property="clubName" column="club_name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="scoreIn" column="score_in" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="scoreOut" column="score_out" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="finalScore" column="final_score" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="endTime" column="end_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        <result property="fanCount" column="fan_count" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="totalFanCount" column="total_fan_count" javaType="Integer" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'PineappleResultMap'"/>
+        <bind name="tableName" value="'ai_pineapple'"/>
+    </sql>
+  
+    <insert id="insert" parameterType="us.circle.pineapple.admin.api.Pineapple" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="Long">
+        delete from pineapple where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="PineappleResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+</mapper>

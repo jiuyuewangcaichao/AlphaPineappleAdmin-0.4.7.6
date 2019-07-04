@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+      
+       <form name="reg_testdate">
+
+       <tr>
+          <td > 选择开始日期：</td>
+          <td>
+            <select id="yearid" name="YYYY" onchange="YYYYDD(this.value)">
+    <option  value="2019">2019</option>
+    <option  value="2020">2020</option>
+  </select>
+  <select id="monthid" name="MM" onchange="MMDD(this.value)">
+        <option value="1">1</option>   
+        <option value="2">2</option>   
+        <option value="3">3</option>   
+        <option value="4">4</option>   
+        <option value="5">5</option> 
+        <option value="6">6</option>   
+        <option value="7">7</option>   
+        <option value="8">8</option>
+        <option value="9">9</option>   
+        <option value="10">10</option>  
+        <option value="11">11</option>  
+        <option value="12">12</option>  
+  </select>
+  <select id="dayid" name="DD">
+        <option value="1">1</option>   
+        <option value="2">2</option>   
+        <option value="3">3</option>   
+        <option value="4">4</option>   
+        <option value="5">5</option> 
+        <option value="6">6</option>   
+        <option value="7">7</option>   
+        <option value="8">8</option>
+        <option value="9">9</option>   
+        <option value="10">10</option>  
+        <option value="11">11</option>  
+        <option value="12">12</option>  
+        <option value="13">13</option>   
+        <option value="14">14</option>   
+        <option value="15">15</option> 
+        <option value="16">16</option>   
+        <option value="17">17</option>   
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>   
+        <option value="21">21</option>   
+        <option value="22">22</option>   
+        <option value="23">23</option>   
+        <option value="24">24</option> 
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>   
+        <option value="28">28</option>   
+        <option value="29">29</option>   
+        <option value="30">30</option>   
+        <option value="31">31</option> 
+       
+  </select>
+          </td>
+
+<td> 选择结束日期：</td>
+          <td>
+            <select id="endingyearid" name="YYYY" onchange="YYYYDD(this.value)">
+    <option  value="2019">2019</option>
+    <option  value="2020">2020</option>
+  </select>
+  <select id="endingmonthid" name="MM" onchange="MMDD(this.value)">
+        <option value="1">1</option>   
+        <option value="2">2</option>   
+        <option value="3">3</option>   
+        <option value="4">4</option>   
+        <option value="5">5</option> 
+        <option value="6">6</option>   
+        <option value="7">7</option>   
+        <option value="8">8</option>
+        <option value="9">9</option>   
+        <option value="10">10</option>  
+        <option value="11">11</option>  
+        <option value="12">12</option>  
+  </select>
+  <select id="endingdayid" name="DD">
+        <option value="1">1</option>   
+        <option value="2">2</option>   
+        <option value="3">3</option>   
+        <option value="4">4</option>   
+        <option value="5">5</option> 
+        <option value="6">6</option>   
+        <option value="7">7</option>   
+        <option value="8">8</option>
+        <option value="9">9</option>   
+        <option value="10">10</option>  
+        <option value="11">11</option>  
+        <option value="12">12</option>  
+        <option value="13">13</option>   
+        <option value="14">14</option>   
+        <option value="15">15</option> 
+        <option value="16">16</option>   
+        <option value="17">17</option>   
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>   
+        <option value="21">21</option>   
+        <option value="22">22</option>   
+        <option value="23">23</option>   
+        <option value="24">24</option> 
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>   
+        <option value="28">28</option>   
+        <option value="29">29</option>   
+        <option value="30">30</option>   
+        <option value="31">31</option> 
+        
+
+       
+  </select>
+          </td>
+        </tr>
+        <tr>
+          <td>选择名字：</td>
+          <td>
+ <select id="nameid" name="name">
+        <option value="chengyuan">chengyuan</option>   
+        <option value="darrn.xu">darrn.xu</option>   
+        <option value="doveray">doveray</option>   
+        <option value="lizian">lizian</option>   
+        <option value="max.fu">max.fu</option> 
+        <option value="tangtang">tangtang</option>   
+        <option value="yangjiajun">yangjiajun</option>   
+        <option value="yaoyuan">yaoyuan</option>
+        <option value="zcf">zcf</option>   
+        <option value="zhouganglai">zhouganglai</option>   
+  </select>
+          </td>
+        </tr>
+
+  
+   
+  <input type="submit" value="开始搜索" onclick = "getSelect()"/>   
+</form>
+       <div id="container" style="height: 80%"></div>
+
+       
+
+
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script src="../../../../jquery.js"></script>
+       <script type="text/javascript">
+ 
+
+
+
+
+
+var dom = document.getElementById("container");
+
+
+var myChart = echarts.init(dom);
+var app = {};
+var option = null;
+option = {
+    title: {
+        text: 'avg统计图'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['k3','ace','king','queen']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: [2,2,3,4,5,6,7]
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'k3',
+            type:'line',
+            data:[12, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'ace',
+            type:'line',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'king',
+            type:'line',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'queen',
+            type:'line',
+            data:[0, 20, 90, 93, 129, 133, 10]
+        }
+    ]
+};
+ 
+
+
+  
+
+
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+
+
+var path="http://127.0.0.1:8082/";
+function getSelect(){
+
+var yearid1 =$("#yearid option:selected").text();
+
+   var monthid1 =$("#monthid option:selected").text();
+  
+    var dayid1 =$("#dayid option:selected").text();
+
+    var yearid2 =$("#endingyearid option:selected").text();
+
+   var monthid2 =$("#endingmonthid option:selected").text();
+  
+    var dayid2 =$("#endingdayid option:selected").text();
+    
+     var nameid1 =$("#nameid option:selected").text(); 
+    
+     var start_time =yearid1+"-"+monthid1+"-"+dayid1;
+     var finish_time =yearid2+"-"+monthid2+"-"+dayid2;
+       
+       alert("传入的名字是："+nameid1);
+       alert("传入开始时间是："+start_time);
+       alert("传入结束的时间是"+ finish_time);
+
+    $.ajax({
+            //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: path+"/statistics/avgscore" ,//url
+                data: {},
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+
+                    if (result.resultCode == 200) {
+                       
+                    }
+                    ;
+                },
+                error : function() {
+                    alert("异常！");
+
+
+                }
+            });
+};
+
+         
+
+
+
+
+
+
+       </script>
+   </body>
+</html>

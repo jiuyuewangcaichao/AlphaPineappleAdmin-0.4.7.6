@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <title>权限管理</title>
+    <!--加载后执行save.js-->
+    <script data-main="save.js" src="../boot.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="mini-fit" style="padding: 16px;">
+    <div id="tabs" class="mini-tabs" activeIndex="0" style="width:100%;height:90%;margin: auto" plain="true">
+        <div title="信息">
+            <table id="basic-info" class="basic-info">
+                <tr>
+                    <td class="label">ID:</td>
+                    <td>
+                        <input required emptyText="只能由字母数字下划线组成" style="width: 100%" name="playerId" class="mini-textbox"/>
+                    </td>
+                    <td class="label">客户名:</td>
+                    <td>
+                        <input required style="width: 100%" name="playerName" class="mini-textbox"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">类型:</td>
+                    <td colspan="3">
+                        <input data="[{text:'鱼类玩家',id:2},{text:'普通玩家',id:1},{text:'未知',id:0},{text:'机器人',id:-1}]" name="playerType" style="width: 100%" class="mini-combobox"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label">备注:</td>
+                    <td colspan="3">
+                        <input name="playerComment" style="width: 100%;height:550px;" class="mini-textarea"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="width: 100px;margin: auto"><a class="mini-button save-button" iconCls="icon-save">保存</a></div>
+</div>
+</body>
+</html>

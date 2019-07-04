@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: alpha.pineapple.ai:api:0.4.7">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/alpha/pineapple/ai/api/0.4.7/api-0.4.7.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/alpha/pineapple/ai/api/0.4.7/api-0.4.7-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/alpha/pineapple/ai/api/0.4.7/api-0.4.7-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

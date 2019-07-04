@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="us.circle.pineapple.admin.dao.MatchDao">
+    <resultMap id="MatchResultMap" type="us.circle.pineapple.admin.api.Match">
+    
+        <id property="id" column="id" javaType="Long" jdbcType="BIGINT"/>
+        <result property="name" column="name" javaType="String" jdbcType="VARCHAR"/>
+        <result property="startTime" column="start_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
+        <result property="finishTime" column="finish_time" javaType="java.time.LocalDateTime" jdbcType="TIMESTAMP"/>
+        <result property="p0" column="p0" javaType="String" jdbcType="VARCHAR"/>
+        <result property="p1" column="p1" javaType="String" jdbcType="VARCHAR"/>
+        <result property="ai" column="ai" javaType="String" jdbcType="VARCHAR"/>
+        <result property="level" column="level" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="type" column="type" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="p0Score" column="p0_score" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="p1Score" column="p1_score" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="aiScore" column="ai_score" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="hand" column="hand" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="k3Fan" column="k3_fan" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="aceFan" column="ace_fan" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="kingFan" column="king_fan" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="queenFan" column="queen_fan" javaType="Integer" jdbcType="INTEGER"/>
+        <result property="k3AvgScore" column="k3_avg_score" javaType="Double" jdbcType="FLOAT"/>
+        <result property="aceAvgScore" column="ace_avg_score" javaType="Double" jdbcType="FLOAT"/>
+        <result property="kingAvgScore" column="king_avg_score" javaType="Double" jdbcType="FLOAT"/>
+        <result property="queenAvgScore" column="queen_avg_score" javaType="Double" jdbcType="FLOAT"/>
+        <result property="username" column="username" javaType="String" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--用于动态生成sql所需的配置-->
+    <sql id="config">
+        <bind name="resultMapId" value="'MatchResultMap'"/>
+        <bind name="tableName" value="'ai_match'"/>
+    </sql>
+  
+    <insert id="insert" parameterType="us.circle.pineapple.admin.api.Match" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildInsertSql"/>
+    </insert>
+
+    <delete id="deleteByPk" parameterType="Long">
+        delete from ai_match where id =#{id}
+    </delete>
+
+    <delete id="delete" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildDeleteSql"/>
+    </delete>
+
+    <update id="update" parameterType="org.hswebframework.web.commons.entity.Entity">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildUpdateSql"/>
+    </update>
+
+    <select id="query" parameterType="org.hswebframework.web.commons.entity.Entity" resultMap="MatchResultMap">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildSelectSql"/>
+    </select>
+
+    <select id="count" parameterType="org.hswebframework.web.commons.entity.Entity" resultType="int">
+        <include refid="config"/>
+        <include refid="BasicMapper.buildTotalSql"/>
+    </select>
+
+
+    <select id="showAvg" resultType="Map">
+
+        SELECT
+        username,
+        DATE_FORMAT(start_time, '%Y-%m-%d') AS date_time,
+        AVG(k3_avg_score),
+        AVG(ace_avg_score),
+        AVG(King_avg_score),
+        AVG(queen_avg_score)
+        FROM
+        `ai_match`
+        WHERE
+        start_time &lt; #{start_time}
+        AND finish_time &gt; #{finish_time}
+        AND username = #{username}
+        GROUP BY
+        username,
+        date_time
+
+    </select>
+
+</mapper>
